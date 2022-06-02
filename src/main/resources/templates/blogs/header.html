@@ -1,0 +1,22 @@
+<div th:fragment="header">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 bg-yellow border-bottom shadow-sn">
+        <h5 class="my-0 mr-md-auto font-weight-normal">МОЯ МАМОЧКА</h5>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <a class="navbar-brand" th:href="@{/}">Главная</a>
+                <a class="navbar-brand" th:href="@{/blog}">Блог</a>
+                <a class="navbar-brand" th:href="@{/blog/add}">Добавить статью</a>
+                <a class="navbar-brand" th:href="@{/about}">Про нас</a>
+                <ul sec:authorize="isAnonymous()" class="navbar-nav">
+                    <li><a th:href="@{/login}">Войти</a></li>
+                </ul>
+                <ul sec:authorize="isAuthenticated()" class="navbar-nav" >
+                    <li><a th:href="@{/logout}" sec:authentication="name">Username</a></li>
+                </ul>
+            </div>
+        </nav>
+        <br/><br/><br/><br/>
+        <input type="hidden" th:name="${_csrf.parameterName}"
+               th:value="${_csrf.token}" />
+    </div>
+</div>
